@@ -5,9 +5,14 @@
 #define SIZE 5
 #define MINES 5
 
+// The game board where -1 represents a mine and other numbers represent the number of mines in the adjacent cells.
 int board[SIZE][SIZE];
+// Stores whether a cell has been revealed or not.
 bool revealed[SIZE][SIZE];
 
+/**
+ * Initializes the game board by randomly placing mines.
+ */
 void init() {
     srand(time(0));
     for(int i = 0; i < MINES; i++) {
@@ -21,6 +26,12 @@ void init() {
     }
 }
 
+/**
+ * Counts the number of mines in the 8 cells surrounding the cell at (x, y).
+ * @param x The x-coordinate of the cell.
+ * @param y The y-coordinate of the cell.
+ * @return The number of mines surrounding the cell.
+ */
 int countMines(int x, int y) {
     int count = 0;
     for(int i = -1; i <= 1; i++) {
@@ -33,6 +44,11 @@ int countMines(int x, int y) {
     return count;
 }
 
+/**
+ * Reveals the cell at (x, y). If the cell is a mine, the game ends. Otherwise, it updates the cell with the number of mines in the adjacent cells.
+ * @param x The x-coordinate of the cell.
+ * @param y The y-coordinate of the cell.
+ */
 void reveal(int x, int y) {
     if(x >= 0 && x < SIZE && y >= 0 && y < SIZE && !revealed[x][y]) {
         revealed[x][y] = true;
@@ -45,6 +61,9 @@ void reveal(int x, int y) {
     }
 }
 
+/**
+ * Prints the current state of the game board.
+ */
 void printBoard() {
     for(int i = 0; i < SIZE; i++) {
         for(int j = 0; j < SIZE; j++) {
@@ -62,6 +81,10 @@ void printBoard() {
     }
 }
 
+/**
+ * The main function where the game loop is. It initializes the game, then enters a loop where it prints the board, takes user input for the cell to reveal, and reveals that cell. The loop continues until the game ends (when a mine is revealed).
+ * @return 0 when the program successfully ends.
+ */
 int main() {
     init();
     while(true) {
