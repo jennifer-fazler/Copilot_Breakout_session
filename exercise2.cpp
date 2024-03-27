@@ -9,6 +9,8 @@
 int board[SIZE][SIZE];
 // Stores whether a cell has been revealed or not.
 bool revealed[SIZE][SIZE];
+// Add a global variable to keep track of the number of moves
+int moves = 0;
 
 /**
  * Initializes the game board by randomly placing mines.
@@ -62,9 +64,17 @@ void reveal(int x, int y) {
 }
 
 /**
+ * Clears the output screen.
+ */
+void clearScreen() {
+    system("cls");
+}
+
+/**
  * Prints the current state of the game board.
  */
 void printBoard() {
+    clearScreen(); // Call the function to clear the screen
     for(int i = 0; i < SIZE; i++) {
         for(int j = 0; j < SIZE; j++) {
             if(revealed[i][j]) {
@@ -82,17 +92,22 @@ void printBoard() {
 }
 
 /**
- * The main function where the game loop is. It initializes the game, then enters a loop where it prints the board, takes user input for the cell to reveal, and reveals that cell. The loop continues until the game ends (when a mine is revealed).
- * @return 0 when the program successfully ends.
+ * Prints the number of moves completed so far.
  */
+void printMoves() {
+    std::cout << "Moves completed: " << moves << "\n";
+}
+
 int main() {
     init();
     while(true) {
         printBoard();
+        printMoves(); // Call the function to print the number of moves
         int x, y;
         std::cout << "Enter row and column: ";
         std::cin >> x >> y;
         reveal(x, y);
+        moves++; // Increment the number of moves after each move
     }
     return 0;
 }
