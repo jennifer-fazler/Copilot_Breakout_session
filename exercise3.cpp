@@ -45,6 +45,16 @@ void searchContact(const std::string& name) {
     }
 }
 
+void outputContact(const Contact& contact) {
+    std::cout << "Name: " << contact.name << ", Address: " << contact.address << ", Email: " << contact.email << ", Phone Number: " << contact.phoneNumber << std::endl;
+}
+
+void listContacts() {
+    for (const auto& contact : phonebook) {
+        outputContact(contact);
+    }
+}
+
 int main() {
     addContact("John Doe", "123 Main St", "johndoe@example.com", "123-456-7890");
     addContact("Jane Doe", "456 Elm St", "janedoe@example.com", "098-765-4321");
@@ -52,6 +62,8 @@ int main() {
     searchContact("John Doe");
     updateContact("John Doe", "John Doe", "456 Main St", "johndoe@example.com", "123-456-7890");
     searchContact("John Doe");
+
+    listContacts();
 
     return 0;
 }
