@@ -1,0 +1,32 @@
+# C# build artifacts
+*.dll
+*.exe
+*.pdb
+
+# C# NuGet packages
+*.nuget
+packages/
+
+# C++ build artifacts
+*.obj
+*.o
+*.lib
+*.dll
+*.exe
+*.pdb
+
+# C++ compiled files
+*.suo
+*.ncb
+*.sdf
+
+# Visual Studio files
+.vs/
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+
+# Bin and Obj folders
+**/bin/
+**/obj/
